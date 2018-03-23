@@ -1,0 +1,10 @@
+# This file stores various settings for your site.
+# You can include the values of these fields in markdown, e.g.:
+# {{ site.data.settings.name }}
+
+name: "My Starter Site"
+description: "This is a website for our team."
+image: "avatar.png"
+logo: "logo.png"
+url: "http://example.com"
+google-analytics-code: "UA-00000000-0"

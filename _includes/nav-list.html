@@ -1,0 +1,17 @@
+{% assign nav-tree = site.data.menu %}
+{% if include.nav-tree %}
+	{% assign nav-tree = include.nav-tree %}
+{% endif %}
+
+{% for item in nav-tree %}
+	<li><a href="{{ site.baseurl }}/{{ item.link }}">{{ item.label }}</a>
+
+		{% if item.submenu %}
+			<ul>
+				{% include nav-list.html nav-tree=item.submenu %}
+			</ul>
+		{% endif %}
+
+	</li>
+
+{% endfor %}
