@@ -1,86 +1,158 @@
 # A starter template for a Jekyll site
 
-This is a vanilla template for creating a website with Jekyll. We use it at Fire and Lion (http://fireandlion.com). It's always a work in progress.
+This is a template for creating a website with Jekyll. We use it at Fire and Lion (http://fireandlion.com).
 
 ## Usage
 
-This site is built with [Jekyll](http://jekyllrb.com). Follow the installation and running instructions for Jekyll to install and run it locally.
+This site is built with [Jekyll](https://jekyllrb.com). Follow the installation and running [instructions for Jekyll](https://jekyllrb.com/docs/home/) to install and run it locally.
 
-### Images
+### Building the live website
 
-This site uses variously sized versions of images for different devices. To generate these, place the original, high-res versions of your images in `_source/images`, then from the Terminal or Command Prompt, in the project root (`jekyll-starter`, or whatever you're rename that directory to for your project), run `gulp`.
+This project can be set up to use GitHub Pages as its live web host. This means that any changes committed to the master branch of this repository will be built into the live site immediately.
 
-Of course, for this to work you must first install [gulp](https://gulpjs.com/) and run `npm install` from the Terminal or Command Prompt, in the project root.
+If this changes in future, and you want to build HTML to place manually on a server:
 
-### Build for live
+1. To set up, run `bundle install` at least once in the repo root to install the Ruby gems we need.
+2. From the Terminal, run `bundle exec jekyll serve --baseurl=""`.
+3. Open your browser to `127.0.0.1:4000` and test the site.
+4. If all's well, copy the contents of the `_site` folder to the `public_html` folder (or equivalent) of the live webserver.
 
-From the terminal (and assuming you've already run `bundle install` at least once in the repo), run
+## Editing content
 
-```
-bundle exec jekyll serve --baseurl=""
-```
+Once you've created your own project repository from the files in this template, follow these editing guidelines to change your site content.
 
-Test, and if all's well, copy the HTML from your `_site` folder to the `public_html` folder (or equivalent) of the live webserver.
+### How to make changes
 
-## Editing
+If you're confident with Git, you can clone this repo and edit locally.
+
+Otherwise, the easiest place to edit text is on [prose.io](https://prose.io). Prose is a simple text editor for editing files on GitHub. If you don't have write access to the original project, your changes will be sent to the repo administrator, who can merge them into the live site.
+
+To create your own copy of the site to play with:
+
+1. Fork the repository on GitHub.
+2. In your fork's repository settings, activate GitHub Pages.
+3. On GitHub, open the `_config.yml` file and change the `baseurl` line to `baseurl: "/douglasreidskinner"`.
+4. Edit your files on GitHub.com directly, or use [prose.io](https://prose.io). When you use prose.io, make sure you're editing *your fork*, and not the original repository.
+5. Your site and changes you make will be live at `username.github.io/douglasreidskinner`, where `username` is your GitHub username.
+6. To submit your changes to the original repository, create a Pull Request on your repository on GitHub.
 
 ### Main site pages
 
-The site's main pages (index or home page, about, contact) are markdown files in the project root.
-
-### Collections
-
-This template doesn't (yet) contain any collections, since collections are very project-specific. On Fire and Lion's [main website](https://fireandlion.com), we use a `portfolio` collection for our portfolio.
+The site's main pages are markdown files in the project root. The home page is `index.md`.
 
 ### Data and settings
 
-You can use the `_data` directory to store data and settings for your site. This template includes a basic `settings.yml` file. There you set the site's name, description, default image, canonical URL and Google Analytics Code.
+Edit site settings and the menu (navigation) in the files in the `_data` directory.
 
-### Posts
+1. The `settings.yml` file is where you set things like the site's name, tagline, description, default image, canonical URL and Google Analytics ID.
+2. Create your nav menu in the `menu.yml` file. There are code comments there to guide you.
+3. Edit (or translate) phrases used in the site's HTML templates in `locales.yml`. If you change the language of your site in `settings.yml`, then change the phrases in `locales.yml` for that language subtag (e.g. `fr` for French).
 
-This template does not include posts, since the need for those depends on your project. On Fire and Lion's [main website](https://fireandlion.com), we use a `thinking` directory for our posts.
+### Images
 
-There, to create a new Thinking piece (aka a post), we add a markdown file to `thinking/_posts`. The file name must include the date of the post at the beginning in `YYYY-MM-DD` format, like `2017-05-15-i-love-you-indesign-but.md`.
-
-In the file, we include at least a `title`, `excerpt` and `author` in the YAML frontmatter, like this:
-
-```
----
-title: "I love you, InDesign, but it's time to let you go"
-excerpt: "I love you, InDesign, but it’s time to let you go. We just can’t be together in a multi-format world."
-author: Arthur Attwell
----
-```
-
-We can also include an `image` in the frontmatter, as for portfolio posts.
-
-#### Captions
-
-To create a caption for an image, insert a markdown image inline in a paragraph, and give the paragraph the class `image-with-caption`, like this:
+To add an image, you can use standard [kramdown syntax](https://kramdown.gettalong.org/quickref.html#links-and-images), but then you'll be missing a key feature of this template: your user's browser won't fetch the size of image best suited to their device. Instead, use this image tag:
 
 ```
-![Great Expectations]({{ site.baseurl }}/images/great-expectations.jpg)
+{% include image file="foobar.jpg" %}
+```
+
+where `foobar.jpg` is the original filename of the image.
+
+If necessary, you can add `class` or `alt` attributes to the image, too:
+
+```
+{% include image file="foobar.jpg" class="example" alt="An example image." %}
+```
+
+(You can also use `src="foobar.jpg"` instead of `file="foobar.jpg"`, if you're used to standard HTML `img` syntax, which uses `src`.)
+
+#### Generating images
+
+It's bets practice to let a user's browser fetch a size of image that suits their device (e.g. smaller versions of images on their phone). This template lets you do that.
+
+For each image, the site needs four sizes: a default size and then 320-, 640- and 1024-pixel-wide versions. These need to be saved in the `images` folder. You can create these versions manually, but it's easier to use a script to generate them automatically. If you're working on a copy of the site on your own, local machine, you can do this. (You can't do this when you're using an online editor like prose.io.)
+
+To generate the variously sized versions of images for different devices, place the original, high-res versions of your images in `_source/images`. Then from the Terminal or Command Prompt, in the project root, enter `gulp`.
+
+The gulp script will process all the images in `_source/images` and save the various sizes in `images` for you.
+
+Of course, for this to work you must have set up your computer beforehand:
+
+1. Install [Node.js](https://nodejs.org).
+2. Install [gulp](https://gulpjs.com/).
+3. Install [GraphicsMagick](http://www.graphicsmagick.org/).
+4. Run `npm install` once from the Terminal or Command Prompt, in the project root.
+
+### Captions
+
+To create a caption for an image, make an image the first line of the paragraph that is the caption text, and give the paragraph the `image-with-caption` class tag, like this:
+
+```
+{% include image file="great-expectations.jpg" %}
 The cover of Great Expectations
 {:.image-with-caption}
 ```
 
-#### Gallery
+This also works with regular markdown image syntax:
+
+```
+![]({{ site.baseurl }}/images/great-expectations.jpg)
+The cover of Great Expectations
+{:.image-with-caption}
+```
+
+### Gallery
 
 To create a gallery of images that tiles on the page, add all the images one after the other, each on a new line. Then add a `{:.gallery}` tag on the last line after the images.
 
 ```
-![The Park]({{site.baseurl}}/images/the-park.jpg)
-![Ties that Bind]({{site.baseurl}}/images/ties-that-bind.jpg)
-![We, the People]({{site.baseurl}}/images/we-the-people.jpg)
+{% include image file="sam.jpg" %}
+{% include image file="pat.jpg" %}
+{% include image file="cam.jpg" %}
 {:.gallery}
 ```
 
-By default, a gallery fits three images in a row on a large screen. To get two, larger images per row, use `{:.gallery-larger}` instead of `{:.gallery}`.
+By default, a gallery fits three images in a row on a large screen. To get two, larger images per row, use `{:.gallery-larger}` instead of `{:.gallery}`. Or give the specific images you want larger a `large` class:
+
+```
+{% include image file="toni.jpg" class="large" %}
+{% include image file="phil.jpg" class="large" %}
+{% include image file="sam.jpg" %}
+{% include image file="pat.jpg" %}
+{% include image file="cam.jpg" %}
+{:.gallery}
+```
+
+You may need to add empty placeholder images to balance a gallery that has one or two images on the last line, for multiples of three (or two if using `large` or `gallery-larger`):
+
+```
+{% include image file="toni.jpg" %}
+{% include image file="sam.jpg" %}
+{% include image file="pat.jpg" %}
+{% include image file="cam.jpg" %}
+![](){:.placeholder}
+![](){:.placeholder}
+{:.gallery}
+```
 
 ### Drafts
 
-You can keep unfinished drafts of posts in `_drafts`.
+You can keep unfinished drafts of posts in `_drafts`. These have no effect on the built site.
 
-### Includes
+### Social sharing and page info
 
-The template includes a few includes that we use often. Some of these are included by default in `_layouts/default.html`. If you know your way around Jekyll, you'll know how to remove or edit these.
+When you share a link on a site like Facebook or Twitter, that site shows a preview of the page you're linking to. Usually, it shows a title, an image and a description.
+
+This information is defined for each page in its 'YAML frontmatter', the section at the top of each markdown page between three hyphens: `---`. For example:
+
+```
+---
+title: "Team"
+description: "Our team of Wookiees are leaders in the field of starship repair and maintenance."
+image: "chewie.jpg"
+---
+```
+
+Note that the content or value for each item is inside straight quotation marks, so that Jekyll knows where it starts and ends.
+
+If you don't add a description or image for a page, the fallback is what's in `_data/settings.yml`.

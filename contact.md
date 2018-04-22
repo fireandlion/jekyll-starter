@@ -1,9 +1,11 @@
 ---
-title: Find us
+title: Contact
 description: ""
 ---
 
-# Find us
+# Contact us
+
+{% include contact-form.html %}
 
 **Name**\\
 Street\\

@@ -1,5 +1,5 @@
 {% comment %}Set the 'More' text, then check if it's been set in the include parameter{% endcomment %}
-{% assign more-text = "More" %}
+{% assign more-text = site.data.locales[site.data.settings.language].excerpt.more %}
 {% if include.more-text %}
 {% assign more-text = include.more-text %}
 {% endif %}

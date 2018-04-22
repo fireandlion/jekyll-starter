@@ -3,7 +3,7 @@ Use footer-cell divs to create columns. {% endcomment %}
 
 		<div class="footer">
 			<div class="footer-cell">
-				<p>Built with the <a href="https://fireandlion.com">Fire and Lion</a> <a href="https://github.com/fireandlion/jekyll-starter">Jekyll starter template</a>.</p>
+				<p>{{ site.locales[site.data.settings.language].footer.credit | markdownify | replace: "<p>", "" | replace: "</p>", "" }}</p>
 			</div>
 		</div><!--.footer-->
 
