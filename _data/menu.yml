@@ -13,6 +13,6 @@
   link: "about"
   submenu:
     - label: "Our team"
-      link: "team"
+      link: "about#our-team"
 - label: "Contact us"
   link: "contact"
