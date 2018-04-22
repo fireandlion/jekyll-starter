@@ -1,5 +1,5 @@
 // If the page is short and the footer is showing its underpants,
-// fix it to the bottom of the page.
+// make the footer high enough to fill the page.
 
 function stickyFooter() {
 
@@ -7,10 +7,14 @@ function stickyFooter() {
 
     var footer = document.querySelector('.footer');
     var footerDepth = footer.getBoundingClientRect().bottom;
+    var content = document.querySelector('.content');
+    var contentDepth = content.getBoundingClientRect().bottom;
+    var footerHeight = window.innerHeight - contentDepth;
 
     if (footerDepth < window.innerHeight) {
-        footer.style.position = 'absolute';
-        footer.style.bottom = '0';
+        // footer.style.position = 'absolute';
+        // footer.style.bottom = '0';
+        footer.style.minHeight = footerHeight + 'px';
     }
 
 }
