@@ -3,7 +3,7 @@ Use footer-cell divs to create columns. {% endcomment %}
 
 		<div class="footer">
 			<div class="footer-cell">
-				<p>{{ site.locales[site.data.settings.language].footer.credit | markdownify | replace: "<p>", "" | replace: "</p>", "" }}</p>
+				<p>{{ site.data.locales[site.data.settings.language].footer.credit | markdownify | replace: "<p>", "" | replace: "</p>", "" }}</p>
 			</div>
 		</div><!--.footer-->
 
