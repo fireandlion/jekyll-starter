@@ -54,13 +54,13 @@
 	nav {
 		background-color: $side-nav-color;
 		display: none; // hidden by default until show-menu is clicked
-		position: fixed;
-		top: 3em;
+		position: absolute;
+		top: 0;
 		right: 0;
 		width: $dropdown-nav-width;
 		height: 100%;
 		z-index: 5;
-		padding: 1em 0 0 0;
+		padding: 4em 0 0 0; // make space for dropdown menu icon
 		ul, ol {
 			font-size: $dropdown-nav-font-size;
 			padding: 0; // overrides user-agent
