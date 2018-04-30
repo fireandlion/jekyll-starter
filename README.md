@@ -31,9 +31,9 @@ To create your own copy of the site to play with:
 
 1. Fork the repository on GitHub.
 2. In your fork's repository settings, activate GitHub Pages.
-3. On GitHub, open the `_config.yml` file and change the `baseurl` line to `baseurl: "/douglasreidskinner"`.
+3. On GitHub, open the `_config.yml` file and change the `baseurl` line to `baseurl: "/jekyll-starter"`.
 4. Edit your files on GitHub.com directly, or use [prose.io](https://prose.io). When you use prose.io, make sure you're editing *your fork*, and not the original repository.
-5. Your site and changes you make will be live at `username.github.io/douglasreidskinner`, where `username` is your GitHub username.
+5. Your site and changes you make will be live at `username.github.io/jekyll-starter`, where `username` is your GitHub username.
 6. To submit your changes to the original repository, create a Pull Request on your repository on GitHub.
 
 ### Main site pages
@@ -68,7 +68,7 @@ If necessary, you can add `class` or `alt` attributes to the image, too:
 
 #### Generating images
 
-It's bets practice to let a user's browser fetch a size of image that suits their device (e.g. smaller versions of images on their phone). This template lets you do that.
+It's best practice to let a user's browser fetch a size of image that suits their device (e.g. smaller versions of images on their phone). This template lets you do that.
 
 For each image, the site needs four sizes: a default size and then 320-, 640- and 1024-pixel-wide versions. These need to be saved in the `images` folder. You can create these versions manually, but it's easier to use a script to generate them automatically. If you're working on a copy of the site on your own, local machine, you can do this. (You can't do this when you're using an online editor like prose.io.)
 
