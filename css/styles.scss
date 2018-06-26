@@ -47,19 +47,20 @@ $break-point-l: $content-width + $side-nav-width + 10em;
 // Import partials
 // These import snippets from _sass.
 // Comment out ones you definitely don't need.
-@import "wrappers";
-@import "typography";
+@import "excerpts";
+@import "footer";
+@import "gallery";
+@import "images";
+@import "input";
 @import "masthead";
 @import "nav";
-@import "footer";
-@import "input";
-@import "verse";
-@import "gallery";
-@import "toc";
 @import "page-nav";
-@import "excerpts";
 @import "polyfills";
 @import "print";
+@import "toc";
+@import "typography";
+@import "verse";
+@import "wrappers";
 
 // Custom CSS
 // Add your own styles below to override
