@@ -1,0 +1,23 @@
+{% comment %}Outputs a list of child pages (not grandchildren).{% endcomment %}
+
+{% comment %}Let users set or override the collection.{% endcomment %}
+{% if include.collection %}
+	{% assign child-pages-list-collection = include.collection %}
+	{% assign this-and-child-pages = site.[child-pages-list-collection] | where_exp: "item", "item.url contains child-pages-list-collection" | sort: "order" %}
+{% else %}
+	{% assign child-pages-list-collection = page.collection %}
+	{% assign this-and-child-pages = site.[child-pages-list-collection] | where_exp: "item", "item.url contains page.url" | sort: "order" %}
+{% endif %}
+
+{% assign children-page-depth = page.url | split: "/" | size | plus: 1 %}
+
+<ul class="child-pages-list">
+	{% for item in this-and-child-pages %}
+		{% assign child-page-depth = item.url | split: "/" | size %}
+		{% if child-page-depth == children-page-depth %}
+			<li>
+				<a href="{{ site.baseurl }}/{{ item.url }}">{{ item.title }}</a>
+			</li>
+		{% endif %}
+	{% endfor %}
+</ul>

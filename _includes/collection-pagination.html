@@ -1,5 +1,11 @@
-{% comment %}Thanks to https://gist.github.com/mmistakes/43a355923921d22cd993
-and https://gist.github.com/johnfmorton/6c395361d259b23409ee6559fd909d5c{% endcomment %}
+{% comment %}
+This include adds pagination to a collection based on files.
+Users can override these links by adding filenames to page frontmatter
+as `parent-page`, `next-page` and `previous-page`.
+
+Thanks to https://gist.github.com/mmistakes/43a355923921d22cd993
+and https://gist.github.com/johnfmorton/6c395361d259b23409ee6559fd909d5c
+for useful inspiration for detecting prev and next.{% endcomment %}
 
 {% capture the_collection %}{{ page.collection }}{% endcapture %}
 
@@ -37,8 +43,40 @@ and https://gist.github.com/johnfmorton/6c395361d259b23409ee6559fd909d5c{% endco
 {% assign firsttitle = first.title %}
 {% assign lasttitle = last.title %}
 
+{% comment %}Check for page links, which override automatic ones{% endcomment %}
+{% if page.previous-page or page.next-page or page.parent-page %}
+  {% comment %}Strip any file extensions{% endcomment %}
+  {% capture parent-page-override %}{{ page.parent-page | split: "." | first }}{% endcapture %}
+  {% capture next-page-override %}{{ page.next-page | split: "." | first }}{% endcapture %}
+  {% capture previous-page-override %}{{ page.previous-page | split: "." | first }}{% endcapture %}
+  {% assign collection-pages = site.[page.collection] %}
+  {% for item in collection-pages  %}
+    {% assign item-file = item.url | split: "." | first | split: "/" | last %}
+    {% if item-file == parent-page-override %}
+      {% capture parent-title %}{{ item.title }}{% endcapture %}
+    {% endif %}
+  {% endfor %}
+  {% for item in collection-pages  %}
+    {% assign item-file = item.url | split: "." | first | split: "/" | last %}
+    {% if item-file == next-page-override %}
+      {% capture next-title %}{{ item.title }}{% endcapture %}
+    {% endif %}
+  {% endfor %}
+  {% for item in collection-pages  %}
+    {% assign item-file = item.url | split: "." | first | split: "/" | last %}
+    {% if item-file == previous-page-override %}
+      {% capture previous-title %}{{ item.title }}{% endcapture %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
 <div class="previous">
-    {% if prevurl %}
+    {% if previous-page-override and previous-page-override != "" %}
+        <a href="../{{ previous-page-override }}">
+            <span class="previous-arrow">←</span>
+            <span class="previous-title">{{ previous-title | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}</span>
+        </a>
+    {% elsif prevurl %}
         <a href="{{ site.baseurl}}{{ prevurl }}">
             <span class="previous-arrow">←</span>
             <span class="previous-title">{{ prevtitle | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}</span>
@@ -51,8 +89,22 @@ and https://gist.github.com/johnfmorton/6c395361d259b23409ee6559fd909d5c{% endco
     {% endif %}
 </div>
 
+{% if parent-page-override and parent-page-override != "" %}
+  <div class="parent">
+    <a href="../" class="prev" >
+      <span class="parent-arrow">↑</span>
+      <span class="parent-title">{{ parent-title | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}</span>
+    </a>
+  </div>
+{% endif %}
+
 <div class="next">
-    {% if nexturl %}
+    {% if next-page-override and next-page-override != "" %}
+        <a href="../{{ next-page-override }}">
+            <span class="next-title">{{ next-title | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}</span>
+            <span class="next-arrow">→</span>
+        </a>
+    {% elsif nexturl %}
         <a href="{{ site.baseurl}}{{ nexturl }}">
             <span class="next-title">{{ nexttitle | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}</span>
             <span class="next-arrow">→</span>
