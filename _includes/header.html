@@ -30,7 +30,7 @@
 
 	</head>
 
-<body class="{{ page.style }}">
+<body {% if page.style or page.collection %}class="{% endif %}{{ page.style }}{% if page.collection %}{{ page.collection }}{% endif %}{% if page.style or page.collection %}"{% endif %}>
 
 	<div class="wrapper">
 
