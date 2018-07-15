@@ -1,8 +1,8 @@
 // Masthead
 
 .masthead {
-	background-color: $masthead-color;
-	color: $text-color-dark;
+	background-color: $masthead-background-color;
+	color: $masthead-text-color;
 	display: table;
 	height: 2em;
 	overflow-y: hidden; // Prevents horizontal scrolling
