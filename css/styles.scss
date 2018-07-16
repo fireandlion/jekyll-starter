@@ -47,6 +47,7 @@ $footer-background-color: $background-color-mid;
 
 // Media query breakpoints
 $break-point-l: $content-width + $side-nav-width + 10em;
+$break-point-xl: ($content-width * 2) + $side-nav-width + 10em;
 
 // Import partials
 // These import snippets from _sass.
