@@ -53,19 +53,19 @@ for useful inspiration for detecting prev and next.{% endcomment %}
   {% for item in collection-pages  %}
     {% assign item-file = item.url | split: "." | first | split: "/" | last %}
     {% if item-file == parent-page-override %}
-      {% capture parent-title %}{{ item.title }}{% endcapture %}
+      {% capture parent-title %}{{ item.title | markdownify | replace: "<p>", "" | replace: "</p>", "" | strip_newlines }}{% endcapture %}
     {% endif %}
   {% endfor %}
   {% for item in collection-pages  %}
     {% assign item-file = item.url | split: "." | first | split: "/" | last %}
     {% if item-file == next-page-override %}
-      {% capture next-title %}{{ item.title }}{% endcapture %}
+      {% capture next-title %}{{ item.title | markdownify | replace: "<p>", "" | replace: "</p>", "" | strip_newlines }}{% endcapture %}
     {% endif %}
   {% endfor %}
   {% for item in collection-pages  %}
     {% assign item-file = item.url | split: "." | first | split: "/" | last %}
     {% if item-file == previous-page-override %}
-      {% capture previous-title %}{{ item.title }}{% endcapture %}
+      {% capture previous-title %}{{ item.title | markdownify | replace: "<p>", "" | replace: "</p>", "" | strip_newlines }}{% endcapture %}
     {% endif %}
   {% endfor %}
 {% endif %}
