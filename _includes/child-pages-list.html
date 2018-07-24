@@ -1,12 +1,27 @@
 {% comment %}Outputs a list of child pages (not grandchildren).{% endcomment %}
 
+{% comment %}How shall we sort the collection?
+If a sort order is specified in the include tag, sort by that.
+Otherwise if the page has an order specified, sort by that.
+Otherwise if the page has a date, sort by that.
+Otherwise, sort by the page title.{% endcomment %}
+{% if include.order %}
+	{% assign sort-order = include.order %}
+{% elsif page.order and page.order != "" %}
+	{% assign sort-order = "order" %}
+{% elsif page.date and page.date != "" %}
+	{% assign sort-order = "date" %}
+{% else %}
+	{% assign sort-order = "title" %}
+{% endif %}
+
 {% comment %}Let users set or override the collection.{% endcomment %}
 {% if include.collection %}
 	{% assign child-pages-list-collection = include.collection %}
-	{% assign this-and-child-pages = site.[child-pages-list-collection] | where_exp: "item", "item.url contains child-pages-list-collection" | sort: "order" %}
+	{% assign this-and-child-pages = site.[child-pages-list-collection] | where_exp: "item", "item.url contains child-pages-list-collection" | sort: sort-order %}
 {% else %}
 	{% assign child-pages-list-collection = page.collection %}
-	{% assign this-and-child-pages = site.[child-pages-list-collection] | where_exp: "item", "item.url contains page.url" | sort: "order" %}
+	{% assign this-and-child-pages = site.[child-pages-list-collection] | where_exp: "item", "item.url contains page.url" | sort: sort-order %}
 {% endif %}
 
 {% comment %}If this is the home page, its depth will be 0,
