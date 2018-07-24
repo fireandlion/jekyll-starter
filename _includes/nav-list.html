@@ -22,7 +22,13 @@
         {% endfor %}
     {% endif %}
 
-    <li class="{% if link-file == page-name %}active{% else %}inactive{% endif %}{% if item.submenu and item.submenu != "" %} has-submenu{% endif %}{% if submenu-active == true %} submenu-active{% endif %}{% unless item.link %} no-link{% endunless %}{% if item.link == "" %} no-link{% endif %}">
+    {% comment %} Check if a page is part of a collection in the menu. {% endcomment %}
+    {% assign collection-active = false %}
+    {% if page.collection == item.link %}
+        {% assign collection-active = true %}
+    {% endif %}
+
+    <li class="{% if link-file == page-name or collection-active == true %}active{% else %}inactive{% endif %}{% if item.submenu and item.submenu != "" %} has-submenu{% endif %}{% if submenu-active == true %} submenu-active{% endif %}{% unless item.link %} no-link{% endunless %}{% if item.link == "" %} no-link{% endif %}">
         {% if item.link %}<a href="{{ site.baseurl }}/{{ item.link }}">{% endif %}
             {{ item.label }}
         {% if item.link %}</a>{% endif %}
