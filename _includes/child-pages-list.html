@@ -49,7 +49,14 @@ and children in the collection will be two levels deeper.{% endcomment %}
 					<a href="{{ site.baseurl }}{{ item.url }}">{{ item.title | markdownify | replace: "<p>", "" | replace: "</p>", "" | strip_newlines }}</a>
 				</p>
 				<p class="child-pages-preview-excerpt">
-					{{ item.excerpt | markdownify | replace: "<p>", "" | replace: "</p>", "", | strip_newlines }}
+
+					{% if item.description %}
+						{% assign child-page-description = item.description %}
+					{% elsif item.excerpt %}
+						{% assign child-page-description = item.excerpt %}
+					{% endif %}
+
+					{{ child-page-description | markdownify | replace: "<p>", "" | replace: "</p>", "", | strip_newlines }}
 					<a href="{{ site.baseurl }}{{ item.url }}" class="read-more">Read more</a>
 				</p>
 			</div>
