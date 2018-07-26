@@ -52,8 +52,8 @@ and children in the collection will be two levels deeper.{% endcomment %}
 
 					{% if item.description %}
 						{% assign child-page-description = item.description %}
-					{% elsif item.excerpt %}
-						{% assign child-page-description = item.excerpt %}
+					{% else %}
+						{% capture child-page-description %}{% include second-block-excerpt.html content=item.content %}{% endcapture %}
 					{% endif %}
 
 					{{ child-page-description | markdownify | replace: "<p>", "" | replace: "</p>", "", | strip_newlines }}
