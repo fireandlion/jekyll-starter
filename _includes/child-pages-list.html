@@ -19,9 +19,15 @@ Otherwise, sort by the page title.{% endcomment %}
 {% if include.collection %}
 	{% assign child-pages-list-collection = include.collection %}
 	{% assign this-and-child-pages = site.[child-pages-list-collection] | where_exp: "item", "item.url contains child-pages-list-collection" | sort: sort-order %}
+	{% if sort-order == "date" %}
+		{% assign this-and-child-pages = this-and-child-pages | reverse %}
+	{% endif %}
 {% else %}
 	{% assign child-pages-list-collection = page.collection %}
 	{% assign this-and-child-pages = site.[child-pages-list-collection] | where_exp: "item", "item.url contains page.url" | sort: sort-order %}
+	{% if sort-order == "date" %}
+		{% assign this-and-child-pages = this-and-child-pages | reverse %}
+	{% endif %}
 {% endif %}
 
 {% comment %}If this is the home page, its depth will be 0,
