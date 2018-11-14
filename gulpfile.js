@@ -186,7 +186,7 @@ gulp.task('images:xlarge', function (done) {
     console.log('Creating extra-large images from ' + paths.img.source);
     if (fileExists.sync('_tools/profiles/sRGB_v4_ICC_preference_displayclass.icc')) {
         gulp.src(paths.img.source + '*.{' + filetypes + '}')
-            .pipe(newer(paths.img.web))
+            .pipe(newer(paths.img.output))
             .pipe(debug({title: 'Creating extra-large '}))
             .pipe(responsive({
                 '*': [{
