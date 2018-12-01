@@ -1,6 +1,6 @@
 # A starter template for a Jekyll site
 
-This is a template for creating a website with Jekyll. We use it at Fire and Lion (http://fireandlion.com).
+This is a template for creating a website with Jekyll. We use it at [Electric Book Works](https://electricbookworks.com).
 
 ## Usage
 
