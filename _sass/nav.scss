@@ -78,6 +78,11 @@
 						font-weight: bold;
 					}
 				}
+				&.inactive {
+					a {
+						font-weight: normal;
+					}
+				}
 				// Make the label cover the text area when there is no no-link
 				// so that clicking it expands the submenu.
 				&.no-link {
