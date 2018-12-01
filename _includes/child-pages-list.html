@@ -22,8 +22,16 @@ Otherwise, sort by the page title.{% endcomment %}
 	{% if sort-order == "date" %}
 		{% assign this-and-child-pages = this-and-child-pages | reverse %}
 	{% endif %}
-{% else %}
+{% elsif page.collection %}
 	{% assign child-pages-list-collection = page.collection %}
+	{% assign this-and-child-pages = site.[child-pages-list-collection] | where_exp: "item", "item.url contains page.url" | sort: sort-order %}
+	{% if sort-order == "date" %}
+		{% assign this-and-child-pages = this-and-child-pages | reverse %}
+	{% endif %}
+{% else %}
+	{% comment %}Assume the collection is the same as the file name.{% endcomment %}
+	{% assign child-pages-list-file-name = page.path | split: "/" | last | split: "." | first %}
+	{% assign child-pages-list-collection = child-pages-list-file-name %}
 	{% assign this-and-child-pages = site.[child-pages-list-collection] | where_exp: "item", "item.url contains page.url" | sort: sort-order %}
 	{% if sort-order == "date" %}
 		{% assign this-and-child-pages = this-and-child-pages | reverse %}
