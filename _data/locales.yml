@@ -135,6 +135,7 @@ en:
       email: "you@example.com"
       message: "Message"
       name: "Name"
+      subject-line: "Enquiry"
   excerpt:
     more: "More"
   footer:
@@ -172,6 +173,7 @@ fr:
       email: "nom@example.com"
       message: "Message"
       name: "Nom"
+    subject-line: "Enquiry"
   excerpt:
     more: "Lire la suite"
   footer:
