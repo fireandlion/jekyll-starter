@@ -7,8 +7,8 @@
         preceding element, the checkbox, being checked. {% endcomment %}
         <input type="checkbox" id="show-menu" role="button">
         <label for="show-menu" class="show-menu">
-            <span class="show-menu-button">&#x2261;</span>
-            <span class="hide-menu-button">×</span>
+            <span class="show-menu-button">{{ site.data.locales[site.data.settings.language].nav.open }}</span>
+            <span class="hide-menu-button">{{ site.data.locales[site.data.settings.language].nav.close }}</span>
         </label>
 
         <nav>

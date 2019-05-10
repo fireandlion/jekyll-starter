@@ -126,6 +126,9 @@
 en:
   iso-name: "English"
   local-name: "English"
+  nav:
+    open: "Menu"
+    close: "Close"
   contact:
     label:
       email: "Email address"
@@ -164,6 +167,9 @@ en:
 fr:
   iso-name: "French"
   local-name: "Français"
+  nav:
+    open: "Menu"
+    close: "Fermer"
   contact:
     label:
       email: "L’adresse e-mail"
