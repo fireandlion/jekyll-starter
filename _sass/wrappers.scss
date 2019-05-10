@@ -19,10 +19,6 @@ body {
 .wrapper {
 	margin: 0 auto;
 	// height: 100%; // uncomment this if you're not using sticky-footer.js
-	@media only screen and (min-width: $break-point-l) {
-		display: flex;
-		flex-wrap: wrap;
-	}
 }
 .content {
 	background-color: $background-color-light;

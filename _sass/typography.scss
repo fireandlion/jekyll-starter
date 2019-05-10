@@ -32,7 +32,7 @@ a {
 	color: $link-color;
 }
 hr {
-	border-top: 1px solid $text-color-mid;
+	border-top: $rule-thickness solid $text-color-mid;
 	border-bottom: 0; // override user-agent styles
 	margin: 2em auto;
 }
@@ -41,8 +41,8 @@ table {
 	border-collapse: collapse;
 	margin-bottom: 1em * $line-height;
 	tr {
-		border-top: 1px solid $text-color-mid;
-		border-bottom: 1px solid $text-color-mid;
+		border-top: $rule-thickness solid $text-color-mid;
+		border-bottom: $rule-thickness solid $text-color-mid;
 	}
 	th {
 		text-align: left;
