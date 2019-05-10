@@ -29,21 +29,28 @@
 	    img {
 			border: none;
 		}
-	}
-	// Close button on mobile menu
-	.hide-menu {
-		float: left;
-		img {
-			width: 2em;
-			border: none;
-			@media (min-width: $break-point-l) {
-				display: none;
-			}
+		.show-menu-button {}
+		.hide-menu-button {
+			display: none;
 		}
-		@media only screen and (min-width: $break-point-l) {
-	    	display: none;
-	    }	
 	}
+
+	// UNUSED
+	// // Close button on mobile menu
+	// .hide-menu {
+	// 	float: left;
+	// 	img {
+	// 		width: 2em;
+	// 		border: none;
+	// 		@media (min-width: $break-point-l) {
+	// 			display: none;
+	// 		}
+	// 	}
+	// 	@media only screen and (min-width: $break-point-l) {
+	//     	display: none;
+	//     }	
+	// }
+
 	// Hide actual checkbox
 	input[type=checkbox]{
 	    display: none;
@@ -149,8 +156,20 @@
 	input[type=checkbox]{
 	    display: none;
 	}
-	// Show submenu when invisible checkbox is checked
-	input[type=checkbox]:checked ~ ul {
-	    display: block;
+	// When the invisible checkbox is checked...
+	input[type=checkbox]:checked {
+		// ...show the submenu
+		& ~ ul {
+	    	display: block;
+		}
+		// ...hide the show button and show the hide one
+		& + label {
+			.show-menu-button {
+				display: none;
+			}
+			.hide-menu-button {
+				display: inline;
+			}
+		}
 	}
 }
