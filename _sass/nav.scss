@@ -1,6 +1,6 @@
 // Nav
 
-@mixin nav-button($text-color: $text-color-light, $background-color: $masthead-background-color) {
+@mixin nav-button($text-color: $text-color-light, $background-color: $dropdown-nav-icon-color) {
     background-color: $background-color;
     border: ($rule-thickness / 2) solid $text-color;
     border-radius: $border-radius;
@@ -64,7 +64,7 @@
         display: table;
     }
     nav {
-        background-color: $side-nav-color;
+        background-color: $dropdown-nav-color;
         display: none; // hidden by default until show-menu is clicked
         position: absolute;
         top: 0;
