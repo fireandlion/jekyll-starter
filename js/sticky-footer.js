@@ -1,3 +1,6 @@
+/*jslint browser */
+/*globals window */
+
 // If the page is short and the footer is showing its underpants,
 // make the footer high enough to fill the page.
 
@@ -17,7 +20,7 @@ function stickyFooter() {
 
 }
 
-window.addEventListener('load', function() {
-  console.log('All assets are loaded, adjusting footer accordingly.')
-  stickyFooter();
-})
+window.addEventListener('load', function () {
+    'use strict';
+    stickyFooter();
+});

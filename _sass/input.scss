@@ -33,9 +33,10 @@ textarea {
 
 // Buttons
 
-a.button, input[type="submit"] {
+a.button, input[type="submit"], input[type="button"] {
     background-color: $background-color-mid;
     border-radius: $border-radius;
+    border-style: none;
     color: $text-color-light;
     display: inline-block;
     margin: 0 0.5em 0.5em 0;
